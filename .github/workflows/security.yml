@@ -1,24 +1,22 @@
-name: Gemini Code Review
+name: Security Review
 
 permissions:
-  pull-requests: write  # Needed for leaving PR comments
+  pull-requests: write # Needed for leaving PR comments
   contents: read
 
 on:
   pull_request:
 
 jobs:
-  gemini-review:
+  security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 2
-      
-      # Acción para revisión de código con inteligencia artificial de Google Gemini
-      - name: Gemini Code Review Action
-        uses: logicloop-ai/gemini-pr-reviewer@v1 # Puedes usar otras acciones de la comunidad como rovellipaolo/gemini-code-review-action o djyde/gemini-code-review
+
+      - uses: anthropics/claude-code-security-review@main
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          comment-pr: true
+          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
