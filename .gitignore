@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# github cli downloads
+gh_cli.zip
+gh_installer.msi
+gh_cli/
+gh.exe

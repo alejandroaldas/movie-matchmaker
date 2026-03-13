@@ -16,7 +16,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 2
 
-      - uses: anthropics/claude-code-security-review@main
-        with:
-          comment-pr: true
-          claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
+      # Nota: La revisión de código con GitHub Copilot es una función nativa de GitHub
+      # (disponible en Copilot Pro/Enterprise) y se habilita desde la configuración 
+      # del repositorio o solicitando un review a @copilot en el PR.
+      # No requiere un paso específico en este workflow.
+      - name: Security Check Placeholder
+        run: echo "Security review delegated to GitHub Copilot (if enabled via repo settings) or other native tools."
+
